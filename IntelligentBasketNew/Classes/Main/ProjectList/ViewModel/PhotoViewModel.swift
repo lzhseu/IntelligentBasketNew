@@ -13,19 +13,22 @@ private let kRefreshPhotoNum = 6      // 刷新下载的照片数
 private let kMaxPhotoNumsFromLoaclFiles = 12 // 从本地拿照片显示时，一次最多显示15张
 let NO_MORE_PHOTO: Int = 1014
 
+let CAMERA_ID_ERROR: Int = -1
+
 
 class PhotoViewModel {
     
     var photosName = [String]()
     static var photosDisplayed = [String]()   //用于存储已经显示的图片
     
+    
     /*
      * 获取图片
      */
-    func getPhotos(deviceId: String, success: @escaping (_ result: Any) -> (), getResourceListError: @escaping (_ error: Int) -> (), downloadError: @escaping (_ error: Int) -> ()) {
-        
+    func getPhotos(cameraId: String, success: @escaping (_ result: Any) -> (), getResourceListError: @escaping (_ error: Int) -> (), downloadError: @escaping (_ error: Int) -> ()) {
+                
         /// 判断文件夹是否存在，不存在则创建
-        let dirPath = "/" + localFileAppendingBaseURL + "/" + deviceId
+        let dirPath = "/" + localFileAppendingBaseURL + "/" + cameraId
         if !LocalFileTools.isDirExistInCache(dir: dirPath) {
             LocalFileTools.createDirInCache(dir: dirPath)
         }
@@ -66,7 +69,7 @@ class PhotoViewModel {
             let dGroup = DispatchGroup()
             
             
-            FtpTools_v2.FtpResourceList(deviceId: deviceId, finishedCallBack: { (result) in
+            FtpTools_v2.FtpResourceList(deviceId: cameraId, finishedCallBack: { (result) in
                 print("======= resource list...  =======")
                 
                 /// 拿到资源列表
@@ -87,8 +90,8 @@ class PhotoViewModel {
                 /// 开始下载
                 for  (idx, file) in self.photosName.enumerated() {
                     
-                    let appendingURL = photoDirFtpURL + "/" + deviceId + "/" + file
-                    let localFilePath = localFileAppendingBaseURL + "/" + deviceId + "/" + file
+                    let appendingURL = photoDirFtpURL + "/" + cameraId + "/" + file
+                    let localFilePath = localFileAppendingBaseURL + "/" + cameraId + "/" + file
                     
                     dGroup.enter()
                     FtpTools_v2.FtpDownload(appendingURL: appendingURL, localFilePath: localFilePath, finishedCallBack: { (result) in
@@ -141,12 +144,17 @@ class PhotoViewModel {
     /*
      * 刷新时获取图片
      */
-    func getRefreshPhotos(deviceId: String, success: @escaping (_ result: Any) -> (), finishWithError: @escaping (_ error: Int) -> ()) {
+    func getRefreshPhotos(cameraId: String, success: @escaping (_ result: Any) -> (), finishWithError: @escaping (_ error: Int) -> ()) {
+        
+        if cameraId == ""  {
+            finishWithError(CAMERA_ID_ERROR)
+            return
+        }
         
         /// 需要知道此时已经有哪些照片了
         /// 需要有一个变量来记录
         /// 获取文件夹中的所有图片
-        let dirPath = "/" + localFileAppendingBaseURL + "/" + deviceId
+        let dirPath = "/" + localFileAppendingBaseURL + "/" + cameraId
         let localFiles = LocalFileTools.getAllFilesInCache(dir: dirPath)
         
         photosName = []
@@ -175,7 +183,7 @@ class PhotoViewModel {
             print("get photos from ftp server.")
             
             /// 先获取资源列表
-            FtpTools_v2.FtpResourceList(deviceId: deviceId, finishedCallBack: { (result) in
+            FtpTools_v2.FtpResourceList(deviceId: cameraId, finishedCallBack: { (result) in
                 
                 /// 拿到资源列表
                 guard let resArr = result as? [[String: Any]] else { return }
@@ -202,8 +210,8 @@ class PhotoViewModel {
                 
                 /// 开始下载
                 for  (idx, file) in self.photosName.enumerated() {
-                    let appendingURL = photoDirFtpURL + "/" + deviceId + "/" + file
-                    let localFilePath = localFileAppendingBaseURL + "/" + deviceId + "/" + file
+                    let appendingURL = photoDirFtpURL + "/" + cameraId + "/" + file
+                    let localFilePath = localFileAppendingBaseURL + "/" + cameraId + "/" + file
                     
                     dGroup.enter()
                     FtpTools_v2.FtpDownload(appendingURL: appendingURL, localFilePath: localFilePath, finishedCallBack: { (result) in
@@ -247,6 +255,44 @@ class PhotoViewModel {
                 finishWithError(error)
             }
             
+        }
+    }
+    
+    /**
+     * 请求 cameraId
+     */
+    func requestCameraId(deviceId: String, finishedCallBack: @escaping (_ result: String) -> (), errorCallBack: @escaping () -> ()) {
+        
+        let parameters = ["deviceId": deviceId]
+        let token = UserDefaultStorage.getToken() ?? ""
+             
+        HttpTools.requestDataURLEncoding(URLString: getInstallInfoURL, method: .GET, parameters: parameters, token: token, finishedCallBack: { (result) in
+          
+            guard let resDict = result as? [String: Any] else {
+                errorCallBack()
+                return
+            }
+            
+            guard let installInfo = resDict["installInfo"] as? [String: Any] else {
+                errorCallBack()
+                return
+            }
+            
+            guard let deviceInfo = installInfo["deviceInfo"] as? [String: Any] else {
+                errorCallBack()
+                return
+            }
+            
+            guard let cameraId = deviceInfo["camera_id"] as? String else {
+                errorCallBack()
+                return
+            }
+            
+            finishedCallBack(cameraId)
+            
+        }) { (error) in
+            print(error)
+            errorCallBack()
         }
     }
 }

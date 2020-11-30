@@ -40,6 +40,7 @@ class PhotoBrowserViewController: BaseViewController {
     }
     
     var deviceId = ""
+    var cameraId = ""
     
     private lazy var refreshFooter = MJRefreshAutoNormalFooter()
     
@@ -195,7 +196,7 @@ extension PhotoBrowserViewController {
     /// 下拉刷新
     @objc func headerRefresh() {
         
-        photoVM.getRefreshPhotos(deviceId: deviceId, success: { (result) in
+        photoVM.getRefreshPhotos(cameraId: cameraId, success: { (result) in
             
             guard let images = result as? [String] else { return }
             self.imageArr = (self.imageArr ?? []) + images
@@ -206,6 +207,8 @@ extension PhotoBrowserViewController {
             self.photoBrowserCollectionView.mj_header?.endRefreshing()
             if error == NO_MORE_PHOTO {
                 self.view.showTip(tip: "百胜吊篮：尚无更多图片！", position: .bottomCenter)
+            } else if error == CAMERA_ID_ERROR {
+                self.view.showTip(tip: "百胜吊篮：获取摄像头失败！", position: .bottomCenter)
             } else {
                 self.view.showTip(tip: "百胜吊篮：图片数据请求失败！", position: .bottomCenter)
             }
@@ -233,7 +236,7 @@ extension PhotoBrowserViewController {
     /// 上拉刷新
     @objc func footerRefresh() {
         
-        photoVM.getRefreshPhotos(deviceId: deviceId, success: { (result) in
+        photoVM.getRefreshPhotos(cameraId: cameraId, success: { (result) in
             
             guard let images = result as? [String] else { return }
             self.imageArr = (self.imageArr ?? []) + images
@@ -244,6 +247,8 @@ extension PhotoBrowserViewController {
             self.photoBrowserCollectionView.mj_footer?.endRefreshing()
             if error == NO_MORE_PHOTO {
                 self.view.showTip(tip: "百胜吊篮：尚无更多图片！", position: .bottomCenter)
+            } else if error == CAMERA_ID_ERROR {
+                self.view.showTip(tip: "百胜吊篮：获取摄像头失败！", position: .bottomCenter)
             } else {
                 self.view.showTip(tip: "百胜吊篮：图片数据请求失败！", position: .bottomCenter)
             }

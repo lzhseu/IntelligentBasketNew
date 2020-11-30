@@ -95,7 +95,38 @@ extension BasketListViewCell {
         photoVc.deviceId = deviceId
         superController!.pushViewController(viewController: photoVc, animated: true)
         
+        photoVM.requestCameraId(deviceId: deviceId, finishedCallBack: { (cameraId) in
+            
+            photoVc.cameraId = cameraId
+            
+            // 获取图片
+            self.photoVM.getPhotos(cameraId: cameraId, success: { (result) in
+                                
+                guard let images = result as? [String] else { return }
+                photoVc.imageArr = images
+                
+            }, getResourceListError: { (getRLError) in
+                
+                /// 获取资源列表失败
+                photoVc.view.hideLoading()
+                switch getRLError {
+                case 550:
+                    photoVc.view.showTip(tip: "百胜吊篮：没有更多图片！", position: .bottomCenter)
+                default:
+                    photoVc.view.showTip(tip: "百胜吊篮：图片数据请求失败！", position: .bottomCenter)
+                }
+                
+            }) { (dError) in
+                /// 下载某张图片失败
+            }
+            
+        }) {
+            photoVc.view.hideLoading()
+            photoVc.view.showTip(tip: "百胜吊篮：获取摄像头失败！", position: .bottomCenter)
+        }
         
+        
+        /*
         photoVM.getPhotos(deviceId: deviceId, success: { (result) in
             
             guard let images = result as? [String] else { return }
@@ -115,7 +146,7 @@ extension BasketListViewCell {
         }) { (dError) in
             /// 下载某张图片失败
         }
- 
+        */
         
         
         /*

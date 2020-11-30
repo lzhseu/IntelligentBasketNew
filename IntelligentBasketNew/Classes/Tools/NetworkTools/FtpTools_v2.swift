@@ -9,6 +9,9 @@
 import UIKit
 import LxFTPRequest
 
+/**
+ * 注意：新版的FTP服务器改为主动模式，此文件代码不变。需要改变的是 LxFTPRequest.m 的源码
+ */
 class FtpTools_v2 {
     
     /*
@@ -19,7 +22,9 @@ class FtpTools_v2 {
         let request = LxFTPRequest.resourceList()
    
 
-        request?.serverURL = URL(string: baseFtpURL)?.appendingPathComponent("/nacelleRent/workPhoto/").appendingPathComponent(deviceId).appendingPathComponent("/")
+//        request?.serverURL = URL(string: baseFtpURL)?.appendingPathComponent("/nacelleRent/workPhoto/").appendingPathComponent(deviceId).appendingPathComponent("/")
+        
+        request?.serverURL = URL(string: baseFtpURL)?.appendingPathComponent(photoDirFtpURL).appendingPathComponent(deviceId).appendingPathComponent("/")
         request?.username = FtpUsername
         request?.password = FtpPassword
         

@@ -39,6 +39,9 @@ let getProjectListByKeyURL = baseURL + "/getProjectListByKey"
 /// 按照项目名或地区模糊查找项目
 let getProjectByVagueURL = baseURL + "/getProjectByVague"
 
+/// 获取吊篮安装信息【用于获取 cameraId，进一步获取吊篮图片】
+let getInstallInfoURL = baseURL + "/getInstallInfo"
+
 
 
 // MARK: - 通讯服务器接口
@@ -48,7 +51,7 @@ let sendToDeviceURL = baseURL + ":8081/sendToDevice"
 
 /// FTP
 let baseFtpURL = "ftp://39.99.158.73"
-let photoDirFtpURL = "/HikVision"
+let photoDirFtpURL = "/HikVision/"
 let localFileBaseURL = NSHomeDirectory()
 let localFileAppendingBaseURL = "Library/Caches/nacelleRent/workPhoto"
 

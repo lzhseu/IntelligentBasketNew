@@ -128,7 +128,7 @@ extension ProjectListViewModel {
                 for userPerm in userPermArr {
                     
                     let isContain = region.containsIgnoringCase(find: userPerm)
-                    print("isContain: \(isContain)")
+                    //print("isContain: \(isContain)")
                     
                     if isContain {
                         regionOK = true
@@ -224,7 +224,7 @@ extension ProjectListViewModel {
                 
             }
             
-            print("realSearchCount: \(realSearchCount)")
+            //print("realSearchCount: \(realSearchCount)")
             
             if realSearchCount <= projectList.count && realSearchCount > 0 {
                 self.searchFlag = false
@@ -234,7 +234,7 @@ extension ProjectListViewModel {
             } else {
                 self.searchFlag = false
             }
-            print("searchFlag: \(self.searchFlag)")
+            //print("searchFlag: \(self.searchFlag)")
             
             finishedCallBack()
             

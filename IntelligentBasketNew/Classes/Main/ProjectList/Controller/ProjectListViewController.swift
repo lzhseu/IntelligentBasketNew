@@ -483,7 +483,7 @@ extension ProjectListViewController: MoreInfoViewControllerDelegate {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ProjectListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("计算count")
+        
         if isSearch {
             return projectListSearchByArea.count
         } else {
@@ -503,7 +503,7 @@ extension ProjectListViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("是cell呀")
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: kProjectInfoCell) as! ProjectInfoViewCell
         if isSearch {
             cell.projectInfoModel = self.projectListSearchByArea[indexPath.item]
