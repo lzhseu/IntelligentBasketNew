@@ -1,0 +1,15 @@
+${PODS_ROOT}/Target Support Files/Pods-IntelligentBasketNew-IntelligentBasketNewUITests/Pods-IntelligentBasketNew-IntelligentBasketNewUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework
+${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework
+${BUILT_PRODUCTS_DIR}/LxFTPRequest/LxFTPRequest.framework
+${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
+${BUILT_PRODUCTS_DIR}/MMMaterialDesignSpinner/MMMaterialDesignSpinner.framework
+${PODS_ROOT}/PLPlayerKit/Pod/Library-Universal/PLPlayerKit.framework
+${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/SwiftyFloatingView/SwiftyFloatingView.framework
+${BUILT_PRODUCTS_DIR}/YBImageBrowser/YBImageBrowser.framework
+${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework

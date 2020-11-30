@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--More Info View Controller-->
+        <scene sceneID="XGL-WY-Ndv">
+            <objects>
+                <viewController storyboardIdentifier="moreInfo" id="Z2d-IJ-ffh" customClass="MoreInfoViewController" customModule="IntelligentBasket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6vF-LB-b8a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xql-e4-3MV">
+                                <rect key="frame" x="0.0" y="224" width="276" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="bxQ-Os-XQn"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_default_user_head" translatesAutoresizingMaskIntoConstraints="NO" id="ETo-Ul-xQh">
+                                <rect key="frame" x="20" y="64" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="07P-qs-xHu"/>
+                                    <constraint firstAttribute="width" constant="60" id="jFR-oB-SPT"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoS-cD-joz">
+                                <rect key="frame" x="88" y="81" width="276" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logout" translatesAutoresizingMaskIntoConstraints="NO" id="AjX-cR-iSq">
+                                <rect key="frame" x="342" y="83" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="8ke-gT-dvY"/>
+                                    <constraint firstAttribute="width" constant="22" id="mfx-j6-ou6"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="zoS-cD-joz" firstAttribute="centerY" secondItem="ETo-Ul-xQh" secondAttribute="centerY" id="3zk-SM-mZ9"/>
+                            <constraint firstItem="9vO-wn-OHB" firstAttribute="trailing" secondItem="AjX-cR-iSq" secondAttribute="trailing" constant="50" id="9ST-3O-kKm"/>
+                            <constraint firstItem="xql-e4-3MV" firstAttribute="width" secondItem="6vF-LB-b8a" secondAttribute="width" multiplier="2/3" id="CvF-Yz-wf2"/>
+                            <constraint firstItem="ETo-Ul-xQh" firstAttribute="leading" secondItem="9vO-wn-OHB" secondAttribute="leading" constant="20" id="MqA-fJ-oWz"/>
+                            <constraint firstItem="zoS-cD-joz" firstAttribute="width" secondItem="6vF-LB-b8a" secondAttribute="width" multiplier="2/3" id="NhX-RG-dqS"/>
+                            <constraint firstItem="AjX-cR-iSq" firstAttribute="centerY" secondItem="ETo-Ul-xQh" secondAttribute="centerY" id="O6x-UY-V5q"/>
+                            <constraint firstItem="xql-e4-3MV" firstAttribute="top" secondItem="9vO-wn-OHB" secondAttribute="top" constant="180" id="Pz7-W9-IF0"/>
+                            <constraint firstItem="xql-e4-3MV" firstAttribute="leading" secondItem="9vO-wn-OHB" secondAttribute="leading" id="eCH-V0-3qL"/>
+                            <constraint firstItem="ETo-Ul-xQh" firstAttribute="top" secondItem="9vO-wn-OHB" secondAttribute="top" constant="20" id="mAK-ZF-PkR"/>
+                            <constraint firstItem="zoS-cD-joz" firstAttribute="leading" secondItem="ETo-Ul-xQh" secondAttribute="trailing" constant="8" id="mLz-b3-76L"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9vO-wn-OHB"/>
+                    </view>
+                    <connections>
+                        <outlet property="logoutBtn" destination="AjX-cR-iSq" id="Tl4-tN-KFd"/>
+                        <outlet property="userNameLabel" destination="zoS-cD-joz" id="egb-Ul-HUx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bin-vq-MeE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1540.5797101449277" y="-368.30357142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_default_user_head" width="42.5" height="42.5"/>
+        <image name="logout" width="42.5" height="42.5"/>
+    </resources>
+</document>
