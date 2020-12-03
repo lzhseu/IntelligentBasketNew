@@ -97,6 +97,7 @@ extension BasketListViewCell {
         
         photoVM.requestCameraId(deviceId: deviceId, finishedCallBack: { (cameraId) in
             
+            
             photoVc.cameraId = cameraId
             
             // 获取图片

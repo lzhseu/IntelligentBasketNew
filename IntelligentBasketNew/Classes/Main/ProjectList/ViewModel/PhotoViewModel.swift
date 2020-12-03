@@ -187,6 +187,7 @@ class PhotoViewModel {
                 
                 /// 拿到资源列表
                 guard let resArr = result as? [[String: Any]] else { return }
+                print(result)
                 
                 /// 如果本地图片的数量已经等于服务器图片
                 if localFiles.count >= resArr.count {

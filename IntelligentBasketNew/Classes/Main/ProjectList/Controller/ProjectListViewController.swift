@@ -261,9 +261,9 @@ extension ProjectListViewController {
             break
         }
         // TODO
-        /*
+        
         pushViewController(viewController: BaiduMapMainViewController(projectList: proList ?? []), animated: true)
-        */
+        
     }
 
     @objc private func toTopBtnClicked() {

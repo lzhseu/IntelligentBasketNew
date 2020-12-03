@@ -16,7 +16,6 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
 @optional
-
 /**
  *获取annotation标题
  *@return 返回annotation的标题信息
