@@ -96,18 +96,17 @@ extension BasketListViewCell {
         superController!.pushViewController(viewController: photoVc, animated: true)
         
         photoVM.requestCameraId(deviceId: deviceId, finishedCallBack: { (cameraId) in
-            
-            
+
             photoVc.cameraId = cameraId
-            
+
             // 获取图片
             self.photoVM.getPhotos(cameraId: cameraId, success: { (result) in
-                                
+
                 guard let images = result as? [String] else { return }
                 photoVc.imageArr = images
-                
+
             }, getResourceListError: { (getRLError) in
-                
+
                 /// 获取资源列表失败
                 photoVc.view.hideLoading()
                 switch getRLError {
@@ -116,11 +115,11 @@ extension BasketListViewCell {
                 default:
                     photoVc.view.showTip(tip: "百胜吊篮：图片数据请求失败！", position: .bottomCenter)
                 }
-                
+
             }) { (dError) in
                 /// 下载某张图片失败
             }
-            
+
         }) {
             photoVc.view.hideLoading()
             photoVc.view.showTip(tip: "百胜吊篮：获取摄像头失败！", position: .bottomCenter)

@@ -15,6 +15,8 @@ target 'IntelligentBasketNew' do
   target 'IntelligentBasketNewUITests' do
     # Pods for testing
   end
+  
+source 'https://github.com/CocoaPods/Specs.git'
 
 pod 'Alamofire'
 pod 'SnapKit'
@@ -30,12 +32,12 @@ pod 'SideMenu'
 #pod "PLPlayerKit"
 #要使用模拟器再使用下面的导入
 pod "PLPlayerKit", :podspec => 'https://raw.githubusercontent.com/pili-engineering/PLPlayerKit/master/PLPlayerKit-Universal.podspec'
-
 pod 'YBImageBrowser'
 pod 'LxFTPRequest'
 pod 'SwiftyFloatingView'  #悬浮视图
 pod "BaiduMapKit"
 pod "BMKLocationKit"
+#pod "GoldRaccoon"
 
 
 end

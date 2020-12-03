@@ -23,12 +23,12 @@ class FtpTools_v2 {
    
 
 //        request?.serverURL = URL(string: baseFtpURL)?.appendingPathComponent("/nacelleRent/workPhoto/").appendingPathComponent(deviceId).appendingPathComponent("/")
-        
-        request?.serverURL = URL(string: baseFtpURL)?.appendingPathComponent(photoDirFtpURL).appendingPathComponent(deviceId).appendingPathComponent("/")
+            
+         request?.serverURL = URL(string: baseFtpURL)?.appendingPathComponent(photoDirFtpURL).appendingPathComponent(deviceId).appendingPathComponent("/")
         request?.username = FtpUsername
         request?.password = FtpPassword
         
-        //print(request?.serverURL)
+        
         request?.successAction = { (resultClass, result) in
             guard let result = result else {
                 print("result is nil")

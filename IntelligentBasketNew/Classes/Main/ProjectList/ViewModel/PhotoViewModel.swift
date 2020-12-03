@@ -291,6 +291,8 @@ class PhotoViewModel {
             
             finishedCallBack(cameraId)
             
+            //finishedCallBack("E57241589")
+            
         }) { (error) in
             print(error)
             errorCallBack()

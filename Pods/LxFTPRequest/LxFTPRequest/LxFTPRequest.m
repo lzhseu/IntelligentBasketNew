@@ -292,7 +292,8 @@ static NSInteger const UPLOAD_BUFFER_SIZE = 1024;
     CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPPassword, (__bridge CFTypeRef)self.password);
     CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPFetchResourceInfo, kCFBooleanTrue);
     CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPAttemptPersistentConnection, kCFBooleanFalse);
-    //CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPUsePassiveMode, kCFBooleanFalse);
+    // 这里改被动模式
+    CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPUsePassiveMode, kCFBooleanFalse);
 
     Boolean supportsAsynchronousNotification = CFReadStreamSetClient(
         self.readStream,
@@ -444,7 +445,8 @@ void resourceListReadStreamClientCallBack(CFReadStreamRef stream, CFStreamEventT
     CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPFetchResourceInfo, kCFBooleanTrue);
     CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPAttemptPersistentConnection, kCFBooleanFalse);
     CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPFileTransferOffset, (__bridge CFTypeRef) @(self.finishedSize));
-    //CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPUsePassiveMode, kCFBooleanFalse);
+    // 这里改被动模式
+    CFReadStreamSetProperty(self.readStream, kCFStreamPropertyFTPUsePassiveMode, kCFBooleanFalse);
 
 
     Boolean supportsAsynchronousNotification = CFReadStreamSetClient(self.readStream,
